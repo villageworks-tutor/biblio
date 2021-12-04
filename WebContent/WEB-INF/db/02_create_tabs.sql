@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS category       CASCADE;
 DROP TABLE IF EXISTS priviledge     CASCADE;
 DROP TABLE IF EXISTS publisher      CASCADE;
-DROP TABLE IF EXISTS member         CASCADE;
+DROP TABLE IF EXISTS user         CASCADE;
 DROP TABLE IF EXISTS book_catalogue CASCADE;
 DROP TABLE IF EXISTS book_ledger    CASCADE;
 DROP TABLE IF EXISTS activity_logs  CASCADE;
@@ -32,7 +32,7 @@ ALTER TABLE publisher ADD CONSTRAINT pk_publisher PRIMARY KEY (code);
 
 /** マスタテーブルの生成 */
 -- 利用者マスタ
-CREATE TABLE member (
+CREATE TABLE user (
 	id					SERIAL,
 	code				CHAR(8),
 	name				VARCHAR(10) NOT NULL,
@@ -46,8 +46,8 @@ CREATE TABLE member (
 	updated_at	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	erasured_at TIMESTAMP
 );
-ALTER TABLE member ADD CONSTRAINT pk_member PRIMARY KEY (id);
-ALTER TABLE member ADD CONSTRAINT fk_member FOREIGN KEY (priviledge) REFERENCES priviledge (code);
+ALTER TABLE user ADD CONSTRAINT pk_user PRIMARY KEY (id);
+ALTER TABLE user ADD CONSTRAINT fk_user FOREIGN KEY (priviledge) REFERENCES priviledge (code);
 
 -- 資料目録
 CREATE TABLE book_catalogue (
@@ -88,7 +88,7 @@ CREATE TABLE activity_logs (
 	description VARCHAR(255)
 );
 ALTER TABLE activity_logs ADD CONSTRAINT pk_activity_logs PRIMARY KEY (id);
-ALTER TABLE activity_logs ADD CONSTRAINT fk_activity_logs FOREIGN KEY (uid) REFERENCES member (id);
+ALTER TABLE activity_logs ADD CONSTRAINT fk_activity_logs FOREIGN KEY (uid) REFERENCES user (id);
 /*
 -- 予約台帳
 CREATE TABLE reserve (
