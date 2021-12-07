@@ -2,8 +2,8 @@
  * 【データベース・データベースユーザの作成】
  * 		★ データベース接続情報 ★
  * 			JDBCドライバ：org.postgresql.Driver
- * 			URL：jdbc:postgreql:bibliodb
- * 					 jdbc:postgresql://localhost:5432/biblio	
+ * 			URL：jdbc:postgreql:bliblodb
+ * 					 jdbc:postgresql://localhost:5432/liblodb	
  * 			USER：librarian
  * 			PASSSWORD：himitu
  */
