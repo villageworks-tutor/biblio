@@ -2,27 +2,35 @@
 DROP TABLE IF EXISTS category       CASCADE;
 DROP TABLE IF EXISTS priviledge     CASCADE;
 DROP TABLE IF EXISTS publisher      CASCADE;
-DROP TABLE IF EXISTS user         CASCADE;
+DROP TABLE IF EXISTS member         	CASCADE;
 DROP TABLE IF EXISTS book_catalogue CASCADE;
 DROP TABLE IF EXISTS book_ledger    CASCADE;
 DROP TABLE IF EXISTS activity_logs  CASCADE;
+DROP TABLE IF EXISTS reserve        CASCADE;
+DROP TABLE IF EXISTS auth           CASCADE;
 
 /** コードマスタの生成 */
--- 分類マスタの生成
+/**********************************/
+/* テーブル名: 分類マスタ */
+/**********************************/
 CREATE TABLE category (
   code SMALLINT NOT NULL UNIQUE,
   name VARCHAR(20)
 );
 ALTER TABLE category ADD CONSTRAINT pk_category PRIMARY KEY (code);
 
--- 分類マスタの生成
+/**********************************/
+/* テーブル名: 権限マスタ */
+/**********************************/
 CREATE TABLE priviledge (
   code SMALLINT NOT NULL UNIQUE,
   name VARCHAR(20)
 );
 ALTER TABLE priviledge ADD CONSTRAINT pk_priviledge PRIMARY KEY (code);
 
--- 出版社マスタの生成
+/**********************************/
+/* テーブル名: 出版社マスタ */
+/**********************************/
 CREATE TABLE publisher (
   code    VARCHAR(8) NOT NULL UNIQUE,
   name    VARCHAR(50) NOT NULL,
@@ -31,10 +39,12 @@ CREATE TABLE publisher (
 ALTER TABLE publisher ADD CONSTRAINT pk_publisher PRIMARY KEY (code);
 
 /** マスタテーブルの生成 */
--- 利用者マスタ
-CREATE TABLE user (
+/**********************************/
+/* テーブル名: 利用者マスタ */
+/**********************************/
+CREATE TABLE member (
 	id					SERIAL,
-	code				CHAR(8),
+	card				CHAR(8) UNIQUE,
 	name				VARCHAR(10) NOT NULL,
 	zipcode		 	CHAR(8),
 	address		 	VARCHAR(100),
@@ -46,13 +56,15 @@ CREATE TABLE user (
 	updated_at	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	erasured_at TIMESTAMP
 );
-ALTER TABLE user ADD CONSTRAINT pk_user PRIMARY KEY (id);
-ALTER TABLE user ADD CONSTRAINT fk_user FOREIGN KEY (priviledge) REFERENCES priviledge (code);
+ALTER TABLE member ADD CONSTRAINT pk_member PRIMARY KEY (id);
+ALTER TABLE member ADD CONSTRAINT fk_member FOREIGN KEY (priviledge) REFERENCES priviledge (code);
 
--- 資料目録
+/**********************************/
+/* テーブル名: 資料目録 */
+/**********************************/
 CREATE TABLE book_catalogue (
 	id 						SERIAL,
-	isbn 					CHAR(13),
+	isbn 					CHAR(13) UNIQUE,
 	category 			SMALLINT,
 	title 				VARCHAR(200),
 	author 				VARCHAR(100),
@@ -66,7 +78,9 @@ ALTER TABLE book_catalogue ADD CONSTRAINT pk_catalogue PRIMARY KEY (id);
 ALTER TABLE book_catalogue ADD CONSTRAINT fk_catalogue_category FOREIGN KEY (category) REFERENCES category (code);
 ALTER TABLE book_catalogue ADD CONSTRAINT fk_catalogue_publisher FOREIGN KEY (publisher_cd) REFERENCES publisher (code);
 
--- 資料台帳
+/**********************************/
+/* テーブル名: 資料台帳 */
+/**********************************/
 CREATE TABLE book_ledger (
 	id 						SERIAL,
 	catalogue_id 	INTEGER,
@@ -77,7 +91,9 @@ CREATE TABLE book_ledger (
 ALTER TABLE book_ledger ADD CONSTRAINT pk_ledger PRIMARY KEY (id);
 ALTER TABLE book_ledger ADD CONSTRAINT fk_ledger FOREIGN KEY (catalogue_id) REFERENCES book_catalogue (id);
 
--- 貸出台帳
+/**********************************/
+/* テーブル名: 貸出台帳 */
+/**********************************/
 CREATE TABLE activity_logs (
 	id 					SERIAL,
 	uid 				INTEGER NOT NULL,
@@ -88,15 +104,31 @@ CREATE TABLE activity_logs (
 	description VARCHAR(255)
 );
 ALTER TABLE activity_logs ADD CONSTRAINT pk_activity_logs PRIMARY KEY (id);
-ALTER TABLE activity_logs ADD CONSTRAINT fk_activity_logs FOREIGN KEY (uid) REFERENCES user (id);
-/*
--- 予約台帳
+ALTER TABLE activity_logs ADD CONSTRAINT fk_activity_logs FOREIGN KEY (uid) REFERENCES member (id);
+
+/**********************************/
+/* テーブル名: 予約台帳 */
+/**********************************/
 CREATE TABLE reserve (
-	id SERIAL,
-	uid INTEGER,
-	book_id INTEGER,
-	reserved_at DATE,
-	status SMALLINT,
+	id 					 SERIAL,
+	uid 				 INTEGER,
+	book_id 		 INTEGER,
+	reserved_at  DATE,
+	status 			 SMALLINT,
 	descrioption VARCHAR(255) 
 );
-*/
+
+/**********************************/
+/* テーブル名: 予約台帳 */
+/**********************************/
+CREATE TABLE auth (
+	id 				INTEGER NOT NULL,
+	card 			CHAR(8) UNIQUE NOT NULL,
+	signin_id VARCHAR(8),
+	password 	CHAR(64) NOT NULL,
+	signup_at	 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	erasured_at 	TIMESTAMP
+);
+ALTER TABLE auth ADD CONSTRAINT fk_auth_card FOREIGN KEY (card) REFERENCES member (card);
+ALTER TABLE auth ADD CONSTRAINT unique_sigin_in UNIQUE (signin_id, password);	-- ユーザIDとパスワードの組み合わせは一意である必要がある
