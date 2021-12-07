@@ -1,0 +1,36 @@
+/** コードマスタのデータ登録 */
+-- 権限マスタのコードの登録
+INSERT INTO priviledge (code, name) VALUES (0, 'システム管理者');
+INSERT INTO priviledge (code, name) VALUES (1, '一般利用者');
+
+-- 分類マスタのコードの登録
+INSERT INTO category (code, name) VALUES (0, '総記');
+INSERT INTO category (code, name) VALUES (1, '哲学');
+INSERT INTO category (code, name) VALUES (2, '歴史');
+INSERT INTO category (code, name) VALUES (3, '社会科学');
+INSERT INTO category (code, name) VALUES (4, '自然科学');
+INSERT INTO category (code, name) VALUES (5, '技術');
+INSERT INTO category (code, name) VALUES (6, '産業');
+INSERT INTO category (code, name) VALUES (7, '芸術');
+INSERT INTO category (code, name) VALUES (8, '言語');
+INSERT INTO category (code, name) VALUES (9, '文学');
+
+-- 出版社マスタのコードの登録
+INSERT INTO publisher (code, name) VALUES ('01', '岩波書店');
+
+/** マスタテーブルのデータ登録 */
+INSERT INTO member VALUES (1, '12056692', '梅田 俊章', '232-0016', '神奈川県横浜市南区宮元町2-16-18', '080-4293-2703', 'mizuho2311@mhwuymgwsr.rp.rql', '1985-07-05',  0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (2, '12050662', '清田 健蔵', '277-0851', '千葉県柏市向原町1-17-13', '080-3440-9925', 'yuzuki086@udtmsizh.nbl.jrml', '2001-02-01',  1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (3, '12058021', '浜口 秋雄', '259-0201', '神奈川県足柄下郡真鶴町真鶴3-20-8', '080-4751-9498', 'fujio_tsuchiya@yfqkvmrmfr.geq.bbl', '1987-11-15',  1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (4, '12057327', '古橋 正美', '121-0807', '東京都足立区伊興本町1-16伊興本町アパート406', '090-4613-0336', 'yoshiko_shimada@ztvzw.frig.fhbl', '1970-10-08',  0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (5, '12052425', '吉澤 正徳', '241-0005', '神奈川県横浜市旭区白根4-6白根フォレスト216', '080-1284-7148', 'chuuzou30475@kwjs.qxl', '1980-01-27',  1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (6, '12056107', '橘 良彦', '231-0862', '神奈川県横浜市中区山手町2-5-9山手町タワー418', '080-6431-9202', 'momokatezuka@wjhpjivinw.hgl', '1997-04-02',  1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO member VALUES (7, '12058439', '浅田 薫', '350-0236', '埼玉県坂戸市花影町4-2-6', '090-1133-3877', 'ikosugi@xsrehtx.uis.ayl', '1978-04-07',  1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO auth VALUES (1, '12056692', 'umeda', '7005cac7c608cdda3ca969c11e5014e2facc46884dfd7101b736ec84da762214', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (2, '12050662', 'kiyot', '7fe2f93d92d4df9ee0d5fc31cb0bf1ab298e9a82394fa8be41a73c606a94c770', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (3, '12058021', 'hamag', '971f07b5e6295687e90072902a62ad30c6e618cc2c4d60f1d606b15e9834f72f', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (4, '12057327', 'furuh', '2fb5b6d66c1c0eba27a3e63e4bbb57617cc3a72329bfb3fb4c230ae47de24f00', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (5, '12052425', 'yoshi', 'e38f9c46588487bd0ac4b5eda294f85d6d8040f73d8e135a84b72e541fbfa48a', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (6, '12056107', 'tachi', 'b92f1f1d28f12d7e07cc4d7bdeefdf184ddb7d059e706d3f642a95c671a814ff', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO auth VALUES (7, '12058439', 'asada', 'a2b9fa3d3590da09d5d542e47bcb1da106a9862baad7c10248f5708ae8ec6b6f', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
