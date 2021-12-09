@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザ認証 - 某市立図書館 Webシステム</title>
+</head>
+<body>
+	<header>
+		<h1>某市立図書館 Webシステム</h1>
+	</header>
+	<main id="signin">
+		<article>
+			<h2>ユーザ認証</h2>
+			<p>ユーザIDまたはパスワードが間違っています。</p>
+			<form name="signin">
+				<table>
+					<tr>
+						<th>ユーザID</th>
+						<td>
+							<input type="text" name="userId" value="umeda" />
+						</td>
+					</tr>
+					<tr>
+						<th>パスワード</th>
+						<td>
+							<input type="text" name="password" value="QnLmqZ9b" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<button formaction="top.html" formmethod="post" name="action" value="signin">サインイン</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</article>
+	</main>
+	<footer>
+		<div id="copyright">&copy;2021 The Certain City Public Library Web System.</div>
+	</footer>
+</body>
+</html>
