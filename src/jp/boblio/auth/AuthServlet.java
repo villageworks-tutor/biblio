@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.boblio.common.DAOException;
+
 /**
  * Servlet implementation class AuthServlet
  */
@@ -17,6 +19,8 @@ public class AuthServlet extends HttpServlet {
 
 	/** シリアルバージョンID */
 	private static final long serialVersionUID = 1L;
+
+	private static final String ERR_URL = "common/error.jsp";
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,9 +33,14 @@ public class AuthServlet extends HttpServlet {
 
 		// ユーザ認証を実行
 		if (service.validate()) {
-			nextPage = service.execute();
+			try {
+				nextPage = service.execute();
+			} catch (DAOException e) {
+				e.printStackTrace();
+				request.setAttribute("message", e.getMessage());
+				nextPage = ERR_URL;
+			}
 		}
-
 		// 次画面遷移
 		this.gotoPage(request, response, nextPage);
 	}

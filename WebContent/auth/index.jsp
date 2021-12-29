@@ -13,6 +13,7 @@
 	<main id="signin">
 		<article>
 			<h2>ユーザ認証</h2>
+			<p><a href="AuthServlet?action=signup">ユーザ登録する</a></p>
 			<c:if test="${not empty requestScope.message}">
 				<p>${requestScope.message}</p>
 			</c:if>
@@ -21,7 +22,7 @@
 					<tr>
 						<th>ユーザID</th>
 						<td>
-							<input type="text" name="userId" value="umeda" />
+							<input type="text" name="userId" value="12056692" />
 						</td>
 					</tr>
 					<tr>

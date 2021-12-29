@@ -10,6 +10,7 @@ public interface IService {
 	/**
 	 * 処理を字高する。
 	 * @return 次画面遷移先URL
+	 * @throws DAOException
 	 */
-	public String execute();
+	public String execute() throws DAOException;
 }

@@ -10,10 +10,15 @@
 	</header>
 	<main id="signin">
 		<article>
-			<h2>ユーザ認証</h2>
-			<p>ユーザIDまたはパスワードが間違っています。</p>
-			<p><a href="signup.html">ユーザ登録する</a></p>
-			<form name="signin">
+			<h2>ユーザ登録</h2>
+			<ul class="error">
+				<li>ユーザIDを入力してください。</li>
+				<li>ユーザIDは8文字の数字で入力してください。</li>
+				<li>パスワードを入力してください。</li>
+				<li>パスワードは8文字以上の英数字で入力してください。</li>
+			</ul>
+			<p>ユーザIDはご自分の利用者カードの番号を入力してください。</p>
+			<form name="signup">
 				<table>
 					<tr>
 						<th>ユーザID</th>
@@ -29,7 +34,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button formaction="top.html" formmethod="post" name="action" value="signin">サインイン</button>
+							<button formaction="top.html" formmethod="post" name="action" value="signin">登録する</button>
 						</td>
 					</tr>
 				</table>

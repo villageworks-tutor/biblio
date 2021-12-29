@@ -12,7 +12,7 @@
 	<main id="error">
 		<article>
 			<h2>エラー</h2>
-			<p>エラーが発生しました。</p>
+			<p>エラーが発生しました。システム管理者に連絡してください。</p>
 			<p>ユーザ認証ページから入り直してください。</p>
 			<p><a href="<%= request.getContextPath() %>/auth">ユーザ認証ページに戻る</a></p>
 		</article>

@@ -25,19 +25,19 @@ class AuthBeanTest {
 	@DisplayName("利用カード番号「12056692」ユーザID「umeda」パスワード「QnLmqZ9b」でインスタンス化されたAuthクラスをシリアライズできる")
 	void test_03() {
 		// setup
-		sut = new AuthBean("12056692", "umeda", "QnLmqZ9b");
-		String expected = "Auth [card=12056692, userId=umeda, password=QnLmqZ9b]";
+		sut = new AuthBean("12056692", "QnLmqZ9b");
+		String expected = "Auth [card=12056692, password=QnLmqZ9b]";
 		// execute
 		String actual = sut.toString();
 		// verify
 		assertThat(actual, is(expected));
 	}
 	@Test
-	@DisplayName("ユーザID「umeda」パスワード「QnLmqZ9b」でインスタンス化されたAuthクラスをシリアライズする")
+	@DisplayName("ユーザID「12056692」パスワード「QnLmqZ9b」でインスタンス化されたAuthクラスをシリアライズする")
 	void test_02() {
 		// setup
-		sut = new AuthBean("umeda", "QnLmqZ9b");
-		String expected = "Auth [card=null, userId=umeda, password=QnLmqZ9b]";
+		sut = new AuthBean("12056692", "QnLmqZ9b");
+		String expected = "Auth [card=12056692, password=QnLmqZ9b]";
 		// execute
 		String actual = sut.toString();
 		// verify
@@ -45,12 +45,12 @@ class AuthBeanTest {
 	}
 
 	@Test
-	@DisplayName("ユーザID「umeda」パスワード「QnLmqZ9b」でAuthクラスをインスタンス化できる")
+	@DisplayName("ユーザID「12056692」パスワード「QnLmqZ9b」でAuthクラスをインスタンス化できる")
 	void test_01() {
 		// setup
 		// sut = new Auth("umeda", "QnLmqZ9b");
 		// execute & verify
-		assertThat(new AuthBean("umeda", "QnLmqZ9b"), is(instanceOf(AuthBean.class)));
+		assertThat(new AuthBean("12056692", "QnLmqZ9b"), is(instanceOf(AuthBean.class)));
 	}
 }
 
