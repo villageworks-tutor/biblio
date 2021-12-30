@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS category       CASCADE;
 DROP TABLE IF EXISTS priviledge     CASCADE;
 DROP TABLE IF EXISTS publisher      CASCADE;
-DROP TABLE IF EXISTS member         	CASCADE;
+DROP TABLE IF EXISTS member         CASCADE;
 DROP TABLE IF EXISTS book_catalogue CASCADE;
 DROP TABLE IF EXISTS book_ledger    CASCADE;
 DROP TABLE IF EXISTS activity_logs  CASCADE;
@@ -122,13 +122,14 @@ CREATE TABLE reserve (
 /* テーブル名: 予約台帳 */
 /**********************************/
 CREATE TABLE auth (
-	id 				INTEGER NOT NULL,
+	id 				SERIAL,
 	card 			CHAR(8) UNIQUE NOT NULL,
-	signin_id VARCHAR(8),
+--	signin_id VARCHAR(8),
 	password 	CHAR(64) NOT NULL,
 	signup_at	 		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at		TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	erasured_at 	TIMESTAMP
 );
+ALTER TABLE auth ADD CONSTRAINT pk_auth PRIMARY KEY (id);
 ALTER TABLE auth ADD CONSTRAINT fk_auth_card FOREIGN KEY (card) REFERENCES member (card);
-ALTER TABLE auth ADD CONSTRAINT unique_sigin_in UNIQUE (signin_id, password);	-- ユーザIDとパスワードの組み合わせは一意である必要がある
+--ALTER TABLE auth ADD CONSTRAINT unique_sigin_in UNIQUE (signin_id, password);	-- ユーザIDとパスワードの組み合わせは一意である必要がある
