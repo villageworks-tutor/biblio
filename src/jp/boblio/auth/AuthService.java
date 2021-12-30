@@ -18,7 +18,7 @@ public class AuthService implements IService {
 	private static final String ACTION_SIGNIN = "signin";
 	private static final String ACTION_SIGNOUT = "signout";
 	private static final String ACTION_SIGNUP = "signup";
-	private static final String MODE_ENTRY = "entry";
+	private static final String MODE_MODIFY = "modify";
 	private static final String MODE_CONFIRM = "confirm";
 	private static final String MODE_EXECUTE = "execute";
 
@@ -119,6 +119,10 @@ public class AuthService implements IService {
 			break;
 
 		case ACTION_SIGNUP:
+			// 入力値の修正の場合
+			if (mode.equals(MODE_MODIFY) || mode.equals(MODE_EXECUTE)) {
+				break;
+			}
 			// ユーザIDの検査：必須入力検査・文字種検査
 			if (!DataValidator.isRequired(userId)) {
 				this.errors.add(ERR_REQUIRED_ID);
@@ -175,6 +179,9 @@ public class AuthService implements IService {
 		// 遷移先URLの初期化
 		String nextPage = URL_AUTH;
 
+		// AuthDAOを取得
+		AuthDAO dao = new AuthDAO(DbUtil.getConnection());
+
 		// actionキーによって処理を分岐
 		switch (this.action) {
 
@@ -190,7 +197,7 @@ public class AuthService implements IService {
 			}
 
 			// リクエストパラメータを利用して認証クラスのオブジェクトを取得
-			AuthDAO dao = new AuthDAO(DbUtil.getConnection());
+			// dao = new AuthDAO(DbUtil.getConnection());
 			AuthBean auth = dao.findMember(userId, password);
 
 			if (DataUtils.isNull(auth)) {
@@ -229,15 +236,24 @@ public class AuthService implements IService {
 		case ACTION_SIGNUP:
 			// リクエストパラメータを取得
 			String mode = this.request.getParameter(MODE_KEY);
-			if (DataUtils.isEmpty(mode) || mode.equals(MODE_ENTRY)) {
+			if (DataUtils.isEmpty(mode) || mode.equals(MODE_MODIFY)) {
 				nextPage = URL_SIGNUP_ENTRY;
 			} else if (mode.equals(MODE_CONFIRM)) {
-				// リクエストスコープに入力値を設定
-				this.request.setAttribute(USERID_KEY, userId);
-				this.request.setAttribute(PASSWORD_KEY, password);
+				// セッションスコープに入力値を設定
+				session.setAttribute(USERID_KEY, userId);
+				session.setAttribute(PASSWORD_KEY, password);
 				// 遷移先URLに登録内容確認ページを設定
 				nextPage = URL_SIGNUP_CONFIRM;
 			} else if (mode.equals(MODE_EXECUTE)) {
+				// 利用者カード番号とパスワードをセッションから取得
+				userId = (String) session.getAttribute(USERID_KEY);
+				password = (String) session.getAttribute(PASSWORD_KEY);
+				// パスワード変更の実行
+				//dao = new AuthDAO(DbUtil.getConnection());
+				dao.update(userId, password);
+				// セッションスコープに登録した入力情報を削除
+				session.removeAttribute(USERID_KEY);
+				session.removeAttribute(PASSWORD_KEY);
 				// 遷移先URLに灯籠完了ページを設定
 				nextPage = URL_SIGNUP_COMPLETE;
 			}

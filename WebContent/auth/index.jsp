@@ -13,7 +13,8 @@
 	<main id="signin">
 		<article>
 			<h2>ユーザ認証</h2>
-			<p><a href="AuthServlet?action=signup">ユーザ登録する</a></p>
+			<p><a href="/biblio/AuthServlet?action=signup">パスワードを変更する</a></p>
+			<p><a href=#"">ユーザ登録する</a></p>
 			<c:if test="${not empty requestScope.message}">
 				<p>${requestScope.message}</p>
 			</c:if>

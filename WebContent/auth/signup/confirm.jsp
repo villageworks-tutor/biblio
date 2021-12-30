@@ -26,19 +26,22 @@
 					<tr>
 						<th>ユーザID</th>
 						<td>
-							<c:out value="${requestScope.userId}" />
+							<c:out value="${sessionScope.userId}" />
 						</td>
 					</tr>
 					<tr>
 						<th>パスワード</th>
 						<td>
-							<c:out value="${requestScope.password}" />
+							<c:out value="${sessionScope.password}" />
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button formaction="/biblio/AuthServlet" formmethod="post" name="action" value="signup">登録</button>
-							<button formaction="/biblio/AuthServlet" formmethod="post" name="action" value="signup">修正</button>
+							<button formaction="/biblio/AuthServlet?action=signup" formmethod="post" name="mode" value="execute">登録</button>
+							<button formaction="/biblio/AuthServlet" formmethod="post" name="action" value="signup">
+								<input type="hidden" name="mode" value="modify" />
+								修正
+							</button>
 						</td>
 					</tr>
 				</table>

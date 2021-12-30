@@ -40,13 +40,13 @@ request.setAttribute("password", "QnLmqZ9b");
 					<tr>
 						<th>ユーザID</th>
 						<td>
-							<input type="text" name="userId" value="<c:out value="${requestScope.userId}" />" />
+							<input type="text" name="userId" value="<c:out value="${sessionScope.userId}" />" />
 						</td>
 					</tr>
 					<tr>
 						<th>パスワード</th>
 						<td>
-							<input type="text" name="password" value="<c:out value="${requestScope.password}" />" />
+							<input type="text" name="password" value="<c:out value="${sessionScope.password}" />" />
 						</td>
 					</tr>
 					<tr>
