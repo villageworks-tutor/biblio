@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+<!--
+	<member card="12056692" name="梅田 俊章" zipcode="232-0016" address="神奈川県横浜市南区宮元町2-16-18" phone="080-4293-2703" email="mizuho2311@mhwuymgwsr.rp.rql" birthday="1985-07-05" priviledge="0" />
+	<member card="12053546" name="大坪 健之" zipcode="240-0115" address="神奈川県三浦郡葉山町上山口4-6-10" phone="045-233-6994" email="kiyoshi28954@vvxni.tr" birthday="1999-08-31" priviledge="1" />
+	<member card="12059522" name="宮崎 佑奈"	zipcode="162-0855" address="東京都新宿区二十騎町2-11-13" phone="03-6132-2580" email="kotonagashima@bapxac.af.hbb" birthday="1991-07-15" priviledge="0" />
+	<member card="12059876" name="磯野 千明" zipcode="221-0046" address="神奈川県横浜市神奈川区神奈川本町1-1-16プレイス神奈川本町104" phone="0460-98-4477" email="uta_morikawa@rpifyldrxc.uz" birthday="1978-11-12" priviledge="1" />
+	<member card="12050513" name="木本 真治" zipcode="289-2112" address="千葉県匝瑳市荻野4-7-2" phone="04-2780-3321" email="Toshiyuki_Mogi@knpujixrgb.zyry.pu" birthday="1984-07-23" priviledge="1" />
+ -->
+	<!-- 新規追加レコード -->
+	<member id="8" card="12055448" name="小嶋 琴羽" zipcode="162-0855" address="東京都新宿区二十騎町3-6-19" phone="080-7292-3340" email="aimi40141@ttoxelnhqr.tbz.sz" birthday="1982-10-12" priviledge="1" />
+
+<!--
+	<auth card="12056692" password="7ccb68e74ce41f7db7943a342890bbd43712cae0cf690705e706bd0eb56779c2" />
+	<auth card="12053546" password="e29cab96bb79f4dc8d3f971cf709958bc6a0eac582dd154d149e5b23aaebb13b" />
+	<auth card="12059522" password="788eaa2069d2f716d1090077bb60d565df5d95775659999fb221a6a91478375b" />
+	<auth card="12059876" password="bd056e5373e7f898485c8a29074a9c0d713c3417a22a8e69389ed142aa2ad1eb" />
+	<auth card="12050513" password="36f9f108587576fd6216c88ea1da781a28b0898f48b9a37696e42a9ac3e17805" />
+	<!- 新規追加レコード：パスワードは「user0001」 ->
+	<auth id="6" card="12055448" password="49719f2386e7d56991608251f4091ab77bd615041381ae2ba77e908431f2c5ee" /><!- PW: user0001 ->
+ -->
+
+</dataset>
